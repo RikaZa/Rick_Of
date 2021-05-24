@@ -1,0 +1,49 @@
+.BG_general{
+    background-image: url("../profile/img/bg.jpg");
+    background-position: center center; 
+    background-repeat: no-repeat;   
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.gb_registrar{
+    background-image: url("../profile/img/bg_registrar.jpg");
+    background-position: center center; 
+    background-repeat: no-repeat;   
+    background-attachment: fixed;
+    background-size: cover;
+}
+.cuerpo_login{
+    width: 100%;
+    height: 600px;
+    text-align: center;
+    position: absolute;
+    padding: 150px 510px;
+}
+
+.contine_registro{
+    margin: 50px 410px;
+    width: 50%;
+    display: flex;
+    position: absolute;
+}
+
+.posi_chek{
+    margin-top: 10px;
+    text-align: center;
+}
+.titulo_registrar{
+   text-align: center;
+}
+.boton_registro{
+    text-align: center;
+}
+.todo_cart{
+    text-align: center;
+    margin-left: 340px;
+}
+.foto_panel{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 230px;
+}

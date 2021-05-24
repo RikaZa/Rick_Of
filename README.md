@@ -1,1 +1,1 @@
-# Rick_Of
+Hola :v te comparto esta información.
