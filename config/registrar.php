@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -29,7 +28,7 @@
     <section class="contine_registro">
         <div class="card">
             <div class="card-body">
-                <form action="" method="post">
+                <form action="validar.php" method="post">
                     <h4 class="titulo_registrar">REGÍSTRATE</h4>
                     <hr>
                     <div class="row g-2">
@@ -64,7 +63,7 @@
                     </div>
                     <br>
                     <div clas="boton_registro">
-                        <input class="btn btn-primary" type="submit" name="signUp" value="REGISTRAR">
+                        <input class="btn btn-primary" type="submit" name="register_" value="REGISTRAR">
                     </div>
                     <div class="mb-3 posi_chek">
                         <a href="#">¿Olvidaste tu contraseña?</a>
@@ -74,4 +73,5 @@
         </div>
     </section>
 </body>
+
 </html>
