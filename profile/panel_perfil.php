@@ -7,6 +7,30 @@
         die();
     }
 ?>
+
+<?php
+	include_once 'conexion.php';
+
+	$sentencia_select=$con->prepare('SELECT *FROM clientes ORDER BY id DESC');
+	$sentencia_select->execute();
+	$resultado=$sentencia_select->fetchAll();
+
+	// metodo buscar
+	if(isset($_POST['btn_buscar'])){
+		$buscar_text=$_POST['buscar'];
+		$select_buscar=$con->prepare('
+			SELECT *FROM clientes WHERE nombre LIKE :campo OR apellidos LIKE :campo;'
+		);
+
+		$select_buscar->execute(array(
+			':campo' =>"%".$buscar_text."%"
+		));
+
+		$resultado=$select_buscar->fetchAll();
+
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -27,81 +51,7 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
     </script>
     <header>
-        <nav class="navbar  navbar-light bg-light ">
-            <div class="container-fluid">
-                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                    aria-labelledby="offcanvasExampleLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Aplicaciones</h5>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                        aria-controls="flush-collapseOne">
-                                        Accordion Item #1
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">Placeholder content for this accordion, which is
-                                        intended to demonstrate the <code>.accordion-flush</code> class. This is the
-                                        first item's accordion body.</div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                        aria-controls="flush-collapseTwo">
-                                        Accordion Item #2
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                    aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">Placeholder content for this accordion, which is
-                                        intended to demonstrate the <code>.accordion-flush</code> class. This is the
-                                        second item's accordion body. Let's imagine this being filled with some actual
-                                        content.</div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                        aria-controls="flush-collapseThree">
-                                        Accordion Item #3
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                    aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">Placeholder content for this accordion, which is
-                                        intended to demonstrate the <code>.accordion-flush</code> class. This is the
-                                        third item's accordion body. Nothing more exciting happening here in terms of
-                                        content, but just filling up the space to make it look, at least at first
-                                        glance, a bit more representative of how this would look in a real-world
-                                        application.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Usuario" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
-            </div>
-        </nav>
+    
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
             <div class="container">
                 <h4 class="navbar-brand"> PANEL DE USUARIO</h4>
@@ -137,7 +87,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-                            type="button" role="tab" aria-controls="contact" aria-selected="false">AJUSTES</button>
+                            type="button" role="tab" aria-controls="contact" aria-selected="false">CONTACTO</button>
                     </li>
                 </ul>
                 <?php
@@ -186,7 +136,44 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="contenedor">
+		<h2>PANEL DE USUARIO</h2>
+		<div class="barra__buscador">
+			<form action="" class="formulario" method="post">
+				<input type="text" name="buscar" placeholder="buscar nombre o apellidos" 
+				value="<?php if(isset($buscar_text)) echo $buscar_text; ?>" class="input__text">
+				<input type="submit" class="btn" name="btn_buscar" value="Buscar">
+				<a href="insert.php" class="btn btn__nuevo">Nuevo</a>
+			</form>
+		</div>
+		<table>
+			<tr class="head">
+				<td>Id</td>
+				<td>Nombre</td>
+				<td>Apellidos</td>
+				<td>Teléfono</td>
+				<td>Ciudad</td>
+				<td>Correo</td>
+				<td colspan="2">Acción</td>
+			</tr>
+			<?php foreach($resultado as $fila):?>
+				<tr >
+					<td><?php echo $fila['id']; ?></td>
+					<td><?php echo $fila['nombre']; ?></td>
+					<td><?php echo $fila['apellidos']; ?></td>
+					<td><?php echo $fila['telefono']; ?></td>
+					<td><?php echo $fila['ciudad']; ?></td>
+					<td><?php echo $fila['correo']; ?></td>
+					<td><a href="update.php?id=<?php echo $fila['id']; ?>"  class="btn__update" >Editar</a></td>
+					<td><a href="delete.php?id=<?php echo $fila['id']; ?>" class="btn__delete">Eliminar</a></td>
+				</tr>
+			<?php endforeach ?>
+
+		</table>
+	</div>
+                    
+                    </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                 </div>
             </div>
