@@ -20,7 +20,7 @@
 					':ciudad' =>$ciudad,
 					':correo' =>$correo
 				));
-				header('Location: index.php');
+				header('Location: panel_perfil.php');
 			}
 		}else{
 			echo "<script> alert('Los campos estan vacios');</script>";
