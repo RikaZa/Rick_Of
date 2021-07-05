@@ -57,7 +57,17 @@ a{
     overflow: hidden;
 
 }
-
+.contenedorRecover{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    max-width: 460px;
+    margin: 30px auto;
+    text-align: center;     
+}
+.btn-mid{
+    margin-left: 120px;
+}
 h2{
     display: block;
     margin-top: 20px;

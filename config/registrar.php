@@ -66,7 +66,7 @@
                         <input class="btn btn-primary" type="submit" name="register_" value="REGISTRAR">
                     </div>
                     <div class="mb-3 posi_chek">
-                        <a href="#">¿Olvidaste tu contraseña?</a>
+                        <a href="recoverPass.php">¿Olvidaste tu contraseña?</a>
                     </div>
                 </form>
             </div>

@@ -35,7 +35,7 @@
                             </div>
                             <div class="mb-3 form-check">
                                 <a href="config/registrar.php">¿Regístrate?</a><br>
-                                <a href="#">¿Olvidaste tu contraseña?</a>
+                                <a href="config/recoverPass.php">¿Olvidaste tu contraseña?</a>
                             </div>
                             <input class="btn btn-primary" type="submit" name="signUp" value="INGRESAR">
                             <script src="alert.js"></script>
